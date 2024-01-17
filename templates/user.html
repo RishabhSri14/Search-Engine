@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>Movie Recommendation for USER_ID: {{ user_id }}</h1>
+    </div>
+    <div class="content">
+        <div class="table-container">
+            <h2>My Past Viewed Movies</h2>
+            <ul>
+                <li>{{ movie }}</li>
+            </ul>
+            <table class="movie-table">
+                <thead>
+                    <tr>
+                        <th>Movie</th>
+                        <th>Genre</th>
+                    </tr>
+                </thead>
+                <tbody id="movie-history">
+                    {% for movie in recommendations %}
+                    <tr>
+                        <td>{{movie[1]}}</td>
+                        <td>{{movie[2]}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <button id="show-recommendations" >Get Recommendations</button>
+        <button id="go-back" style="display: none;">Go Back</button>
+        <div class="loading" id="loading" style="display: none;">
+            <img src="{{ url_for('static', filename='images/loading.gif') }}" alt="Loading">
+        </div>
+        <div class="recommendations" id="recommendations" style="display: none;">
+            <h2>Recommended Movies</h2>
+            <ul class="movie-list">
+                <li>Movie 3 - Action</li>
+                <li>Movie 4 - Comedy</li>
+                <li>Movie 5 - Drama</li>
+            </ul>
+        </div>
+    </div>
+    <script  src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        var user_id = '{{user_id}}' ;
+        const previousPageUrl = previous_page_url ;
+        </script>
+</body>
+</html>
